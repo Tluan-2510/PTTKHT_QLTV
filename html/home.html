@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý thư viện</title>
+    <link rel="stylesheet" href="/css/home.css" />
+    <link rel="stylesheet" href="/font/fontawesome-free-6.6.0-web/css/all.css">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>HỆ THỐNG QUẢN LÝ THƯ VIỆN</h1>
+      </header>
+
+      <nav>
+        <ul>
+          <li>
+            <a href="#" onclick="showSection('quan-ly-sach')">Quản lý sách</a>
+          </li>
+          <li>
+            <a href="#" onclick="showSection('quan-ly-doc-gia')"
+              >Quản lý độc giả</a
+            >
+          </li>
+          <li>
+            <a href="#" onclick="showSection('xu-ly-muon-sach')"
+              >Xử lý mượn sách</a
+            >
+          </li>
+          <li>
+            <a href="#" onclick="showSection('xu-ly-tra-sach')"
+              >Xử lý trả sách</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <main>
+        <!-- Giao diện mặc định: Hình ảnh sách và thông tin sách -->
+        <section id="default-view" class="default-view">
+          <h2>Sách tiêu biểu trong tuần</h2>
+          <div class="book-list">
+            <div class="book">
+              <img
+                src="https://marketplace.canva.com/EAD5DLrZ1DE/1/0/1024w/canva-xanh-m%C3%B2ng-k%C3%A9t-v%C3%A0-h%E1%BB%93ng-b%C3%A1nh-donut-th%E1%BB%A9c-%C4%83n-nh%E1%BA%ADt-k%C3%BD-s%C3%A1ch-b%C3%ACa-Zlr77mT-27w.jpg"
+                alt="Sách 1"
+              />
+              <h3>Sách 1</h3>
+              <p>Tác giả: Tác giả 1</p>
+            </div>
+            <div class="book">
+              <img
+                src="https://thanhnien.mediacdn.vn/Uploaded/minhnguyet/2022_05_08/bia-sach2-9886.jpg"
+                alt="Sách 2"
+              />
+              <h3>Sách 2</h3>
+              <p>Tác giả: Tác giả 2</p>
+            </div>
+            <div class="book">
+              <img
+                src="https://intamphuc.vn/wp-content/uploads/2023/06/mau-bia-sach-dep-4.jpg"
+                alt="Sách 3"
+              />
+              <h3>Sách 3</h3>
+              <p>Tác giả: Tác giả 3</p>
+            </div>
+            <div class="book">
+              <img
+                src="https://vietart.co/blog/wp-content/uploads/2014/01/2_thiet_ke_bia_sach_dep_20.jpg"
+                alt="Sách 4"
+              />
+              <h3>Sách 4</h3>
+              <p>Tác giả: Tác giả 4</p>
+            </div>
+            <div class="book">
+              <img
+                src="https://thegioidohoa.com/wp-content/uploads/2017/08/tong-hop-20-mau-bia-sach-doc-dao-nhat-nam-2017-7.jpg"
+                alt="Sách 5"
+              />
+              <h3>Sách 5</h3>
+              <p>Tác giả: Tác giả 5</p>
+            </div>
+            <div class="book">
+              <img
+                src="https://img.pikbest.com/templates/20211025/bg/a6de5a0b8ae81.png!w700wp"
+                alt="Sách 6"
+              />
+              <h3>Sách 6</h3>
+              <p>Tác giả: Tác giả 6</p>
+            </div>
+            <div class="book">
+              <img
+                src="https://img.lovepik.com/free-template/20231119/lovepik-childrens-book-cover-image_6936372_detail.jpg!wh650"
+                alt="Sách 7"
+              />
+              <h3>Sách 7</h3>
+              <p>Tác giả: Tác giả 7</p>
+            </div>
+          </div>
+          <div class="bannder-name"><span>BANNER</span></div>
+          <div class="banner">
+            <div class="next-btn">
+              <div class="left">
+                <i class="fa-solid fa-chevron-left"></i>
+              </div>
+              <div class="right">
+                <i class="fa-solid fa-chevron-right"></i>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Quản lý sách -->
+        <section id="quan-ly-sach" class="content-section">
+          <h2>Quản Lý Sách</h2>
+          <br>
+          <br>
+          <div>
+            <input type="text" id="search-input" placeholder="Tìm kiếm sách..." />
+            <button onclick="searchBooks()">Tìm kiếm</button>
+        </div>
+        
+          <button id="addBookBtn" onclick="addBook()">Thêm sách mới</button>
+          <div id="bookList">
+            <div class="book-item" data-book-id="1" onclick="showInfoBookModal('1')">
+                <span class="book-id">Mã: 001</span>
+                <span class="book-title">Sách 1</span>
+                <button onclick="editBook('1'); event.stopPropagation()">Sửa</button>
+                <button onclick="event.stopPropagation(); deleteBook('1', event)">Xóa</button>
+            </div>
+            <div class="book-item" data-book-id="2" onclick="showInfoBookModal('2')">
+                <span class="book-id">Mã: 002</span>
+                <span class="book-title">Sách 2</span>
+                <button onclick="editBook('2'); event.stopPropagation()">Sửa</button>
+                <button onclick="event.stopPropagation(); deleteBook('2', event)">Xóa</button>
+            </div>
+            <div class="book-item" data-book-id="3" onclick="showInfoBookModal('3')">
+                <span class="book-id">Mã: 003</span>
+                <span class="book-title">Sách 3</span>
+                <button onclick="editBook('3'); event.stopPropagation()">Sửa</button>
+                <button onclick="event.stopPropagation(); deleteBook('3', event)">Xóa</button>
+            </div>
+        </div>
+
+            <!-- Book Modal for Adding/Editing -->
+        <div id="bookModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeBookModal()">&times;</span>
+                <h2 id="modal-title">Thêm sách mới</h2>
+                <form id="bookForm" onsubmit="saveBook(event)">
+                    <input type="hidden" id="book-id-hidden">
+                    <label>Mã sách:</label>
+                    <input type="text" id="book-code" required>
+                    <label>Tiêu đề:</label>
+                    <input type="text" id="book-title" required>
+                    <label>Tác giả:</label>
+                    <input type="text" id="book-author" required>
+                    <label>Thể loại:</label>
+                    <input type="text" id="book-category" required>
+                    <label>Nhà xuất bản:</label>
+                    <input type="text" id="book-publisher" required>
+                    <label>Năm xuất bản:</label>
+                    <input type="text" id="book-year" required>
+                    <label>Số lượng:</label>
+                    <input type="number" id="book-quantity" required>
+                    <button type="submit">Lưu</button>
+                    <button type="button" onclick="closeBookModal()">Hủy</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal Hiển thị Thông tin sách -->
+        <div id="infoBookModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeInfoBookModal()">&times;</span>
+                <h2>Thông tin sách</h2>
+                <p><strong>Mã sách:</strong> <span id="info-book-code"></span></p>
+                <p><strong>Tên sách:</strong> <span id="info-book-title"></span></p>
+                <p><strong>Tác giả:</strong> <span id="info-book-author"></span></p>
+                <p><strong>Thể loại:</strong> <span id="info-book-category"></span></p>
+                <p><strong>Nhà xuất bản:</strong> <span id="info-book-publisher"></span></p>
+                <p><strong>Năm xuất bản:</strong> <span id="info-book-year"></span></p>
+                <p><strong>Số lượng:</strong> <span id="info-book-quantity"></span></p>
+                <button type="button" class="button-dis" onclick="closeInfoBookModal()">Hủy</button>
+            </div>  
+        </div>
+        </section>
+
+        <!-- Quản lý độc giả -->
+        <section id="quan-ly-doc-gia" class="content-section">
+          <h2>Quản lý độc giả</h2>
+          <br>
+          <br>
+          <div>
+            <input type="text" id="search-input" placeholder="Tìm kiếm độc giả..." />
+            <button onclick="searchReaders()">Tìm kiếm</button>
+          </div>
+          <button onclick="showAddReaderModal()">Thêm độc giả mới</button>
+          <div id="readerList">
+            <div class="reader-item" data-reader-id="R001" onclick="showInfoReaderModal('R001')">
+              <span class="reader-id">Mã: R001</span>
+              <span class="reader-name">Nguyễn Văn A</span>
+              <button onclick="editReader('R001'); event.stopPropagation()">Sửa</button>
+              <button onclick="event.stopPropagation(); deleteReader('R001', event)">Xóa</button>
+            </div>
+            <div class="reader-item" data-reader-id="R002" onclick="showInfoReaderModal('R002')">
+              <span class="reader-id">Mã: R002</span>
+              <span class="reader-name">Trần Thị B</span>
+              <button onclick="editReader('R002'); event.stopPropagation()">Sửa</button>
+              <button onclick="event.stopPropagation(); deleteReader('R002', event)">Xóa</button>
+            </div>
+            <div class="reader-item" data-reader-id="R003" onclick="showInfoReaderModal('R003')">
+              <span class="reader-id">Mã: R003</span>
+              <span class="reader-name">Lê Minh C</span>
+              <button onclick="editReader('R003'); event.stopPropagation()">Sửa</button>
+              <button onclick="event.stopPropagation(); deleteReader('R003', event)">Xóa</button>
+            </div>
+          </div>
+        
+          <!-- Modal Thêm/Chỉnh sửa độc giả -->
+          <div id="readerModal" class="modal">
+            <div class="modal-content">
+              <span class="close" onclick="closeReaderModal()">&times;</span>
+              <h2 id="modal-title">Thêm độc giả mới</h2>
+              <form id="readerForm" onsubmit="saveReader(event)">
+                <input type="hidden" id="reader-id-hidden">
+                <label>Mã độc giả:</label>
+                <input type="text" id="reader-id" required>
+                <label>Tên độc giả:</label>
+                <input type="text" id="reader-name" required>
+                <label>Ngày sinh:</label>
+                <input type="date" id="reader-birthday" required>
+                <label>Địa chỉ:</label>
+                <input type="text" id="reader-address" required>
+                <label>Số CCCD:</label>
+                <input type="text" id="reader-cccd" required>
+                <label>Số điện thoại:</label>
+                <input type="text" id="reader-phone" required>
+                <label>Email:</label>
+                <input type="email" id="reader-email" required>
+                <label>Ngày hết hạn thẻ:</label>
+                <input type="date" id="reader-expiry-date" required>
+                <button type="submit">Lưu</button>
+                <button type="button" onclick="closeReaderModal()">Hủy</button>
+              </form>
+            </div>
+          </div>
+        
+          <!-- Modal Hiển thị Thông tin độc giả -->
+          <div id="infoReaderModal" class="modal-reader">
+            <div class="modal-content-reader">
+              <span class="close" onclick="closeInfoReaderModal()">&times;</span>
+              <h2>Thông tin độc giả</h2>
+              <p><strong>Mã độc giả:</strong> <span id="info-reader-id"></span></p>
+              <p><strong>Tên độc giả:</strong> <span id="info-reader-name"></span></p>
+              <p><strong>Ngày sinh:</strong> <span id="info-reader-birthday"></span></p>
+              <p><strong>Địa chỉ:</strong> <span id="info-reader-address"></span></p>
+              <p><strong>Số CCCD:</strong> <span id="info-reader-cccd"></span></p>
+              <p><strong>Số điện thoại:</strong> <span id="info-reader-phone"></span></p>
+              <p><strong>Email:</strong> <span id="info-reader-email"></span></p>
+              <p><strong>Ngày hết hạn thẻ:</strong> <span id="info-reader-expiry-date"></span></p>
+              <button type="button" class="button-dis" onclick="closeInfoReaderModal()">Hủy</button>
+            </div>  
+          </div>
+        </section>
+
+        <!-- Xử lý mượn sách -->
+        <section id="xu-ly-muon-sach" class="content-section">
+          <h2>Xử lý mượn sách</h2>
+          <br>
+          <br>
+          <form id="borrow-form" onsubmit="handleBorrowBook(event)">
+            <label for="doc-gia-id">Mã độc giả:</label>
+            <input
+              type="text"
+              id="doc-gia-id"
+              placeholder="Nhập mã độc giả"
+              required
+            />
+
+            <label for="sach-id">Mã sách:</label>
+            <input
+              type="text"
+              id="sach-id"
+              placeholder="Nhập mã sách"
+              required
+            />
+
+            <button type="submit">Mượn sách</button>
+          </form>
+
+          <button onclick="viewBorrowHistory()">Xem lịch sử mượn sách</button>
+          <div id="borrow-history"></div>
+        </section>
+
+        <!-- Xử lý trả sách -->
+        <section id="xu-ly-tra-sach" class="content-section">
+          <h2>Xử lý trả sách</h2>
+          <br>
+          <br>
+          <form id="return-form" onsubmit="handleReturnBook(event)">
+            <label for="return-doc-gia-id">Mã độc giả:</label>
+            <input
+              type="text"
+              id="return-doc-gia-id"
+              placeholder="Nhập mã độc giả"
+              required
+            />
+
+            <label for="return-sach-id">Mã sách:</label>
+            <input
+              type="text"
+              id="return-sach-id"
+              placeholder="Nhập mã sách"
+              required
+            />
+
+            <button type="submit">Trả sách</button>
+          </form>
+
+          <button onclick="viewReturnHistory()">Xem lịch sử trả sách</button>
+          <div id="return-history"></div>
+        </section>
+      </main>
+    </div>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

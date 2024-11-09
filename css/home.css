@@ -1,0 +1,612 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Lịch sử mượn sách và trả sách */
+#borrow-history, #return-history {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  
+  #borrow-history div, #return-history div {
+    padding: 10px;
+    background-color: #e3f2fd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  #borrow-history div:hover, #return-history div:hover {
+    background-color: #bbdefb;
+  }
+  
+  /* Responsive: Thu nhỏ giao diện trên thiết bị di động */
+  @media (max-width: 768px) {
+    .content-section {
+      padding: 15px;
+      margin: 15px;
+    }
+  
+    input, button {
+      font-size: 14px;
+      padding: 8px;
+    }
+  
+    h2 {
+      font-size: 20px;
+    }
+  }
+
+  /* Phần nội dung chính */
+.content-section {
+    margin: 20px auto;
+    max-width: 900px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .bannder-name {
+    margin-top: 40px;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .banner {
+    margin-top: 10px;
+    background-image: url(https://static.wixstatic.com/media/1e15a0_73def9917271415a969273017930721e~mv2.jpg/v1/fill/w_1200,h_628,al_c/1e15a0_73def9917271415a969273017930721e~mv2.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 400px;
+    border-radius: 5px;
+  }
+
+  .next-btn {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .next-btn i{
+    font-size: 32px;
+    color: #fff;
+    padding: 16px;
+    border-radius: 50%;
+  }
+
+  .next-btn i:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 1);
+  }
+  
+  /* Thẻ form */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  label {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+  }
+  
+  input:focus {
+    border-color: #4caf50;
+    outline: none;
+  }
+  
+  /* Nút button */
+  button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Các phần hiển thị lịch sử */
+  button:nth-of-type(2) {
+    background-color: #f44336;
+  }
+  
+  button:nth-of-type(2):hover {
+    background-color: #e53935;
+  }
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    background-image: url("https://www.freeppt7.com/uploads/180907/1-1PZH05603T6.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 20px 0;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #333;
+}
+
+nav {
+    background-color: #333;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    padding: 10px;
+}
+
+nav ul li a:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+main {
+    margin-top: 20px;
+}
+
+.default-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.default-view h2 {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.book-list {
+    display: flex;
+    gap: 20px;
+}
+
+.book {
+    text-align: center;
+}
+
+.book img {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.book h3 {
+    margin-top: 10px;
+}
+
+.book p {
+    color: #666;
+}
+
+.content-section {
+    display: none;
+}
+
+h2 {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form label {
+    font-size: 1.2em;
+}
+
+form select {
+    padding: 8px;
+    font-size: 1em;
+}
+
+form button {
+    width: 200px;
+    align-self: center;
+}
+/* Nút đóng modal */
+.close-btn {
+    color: #aaa;
+    font-size: 30px;
+    font-weight: bold;
+    float: right;
+    cursor: pointer;
+}
+
+/* Khi hover vào nút đóng */
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+}
+
+/* Form */
+form {
+    display: grid; /* Dùng grid layout để sắp xếp các trường */
+    grid-template-columns: 1fr 1fr; /* 2 cột */
+    gap: 15px; /* Khoảng cách giữa các trường */
+    align-items: center; /* Căn giữa các phần tử */
+}
+
+/* Các label và input */
+form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: left;
+    width: 200px;
+}
+
+form input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border 0.3s ease;
+    width: 100%; /* Đảm bảo input chiếm hết chiều rộng trong cột */
+}
+
+/* Khi focus vào input */
+form input:focus {
+    border-color: #4CAF50; /* Đổi màu khi focus vào input */
+}
+
+/* Nút submit và hủy */
+form button {
+    padding: 12px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 48%; /* Chiếm một nửa chiều rộng của form */
+    margin-top: 20px;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+/* Nút hủy */
+form button[type="button"] {
+    background-color: #f44336; /* Màu đỏ cho nút hủy */
+}
+
+form button[type="button"]:hover {
+    background-color: #e53935;
+}
+
+/* Nút hủy */
+.button-dis {
+    background-color: #f44336; /* Màu đỏ cho nút hủy */
+    padding: 12px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100px; /* Chiếm một nửa chiều rộng của form */
+    margin-top: 20px;
+}
+
+.button-dis:hover {
+    background-color: #e53935;
+}
+
+/* Cải thiện khoảng cách giữa các phần tử */
+form button[type="button"] {
+    float: right; /* Đẩy nút hủy sang bên phải */
+}
+
+/* Danh sách độc giả */
+#readerList {
+    margin-bottom: 20px;
+}
+
+.reader-item {
+    padding: 10px;
+    margin: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.reader-item:hover {
+    background-color: #ddd;
+}
+
+.reader-id {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.reader-name {
+    color: #34495e;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Modal (Cửa sổ bật lên) */
+.modal {
+    display: none; /* Ẩn modal mặc định */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Màu nền mờ với độ tối cao */
+    overflow: auto;
+    padding-top: 60px; /* Để modal cách trên một khoảng */
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 700px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    font-family: 'Arial', sans-serif;
+    color: #333; /* Đảm bảo chữ có màu tối để dễ đọc */
+}
+
+/* Nút đóng modal */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #e74c3c; /* Màu đỏ khi hover để nổi bật */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Tiêu đề modal */
+h3 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.reader-item {
+    padding: 15px;
+    margin: 10px 0;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+}
+
+.reader-item:hover {
+    background-color: #eaf1f1;
+    border-color: #1abc9c;
+    transform: scale(1.02);
+}
+
+.reader-id {
+    font-weight: bold;
+    color: #3498db;
+}
+
+.reader-name {
+    color: #34495e;
+}
+
+
+/* Modal CSS */
+.modal,
+.modal-reader,
+#readerModal {
+    display: none; /* Ẩn modal theo mặc định */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    overflow: auto;
+    padding-top: 60px;
+}
+.modal-content,
+.modal-content-reader {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 700px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close:hover, .close:focus {
+    color: #e74c3c;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+h3 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 26px;
+    font-weight: 700;
+}
+#bookList {
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+}
+.book-item {
+    padding: 15px;
+    margin: 10px 0;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+}
+.book-item:hover {
+    background-color: #eaf1f1;
+    border-color: #1abc9c;
+    transform: scale(1.02);
+}
+.book-id {
+    font-weight: bold;
+    color: #3498db;
+}
+.book-title {
+    color: #34495e;
+}
+
+
+#search-input {
+    padding: 10px 20px; 
+}
+
+#infoReaderModal {
+    display: none;
+}
+
+#return-doc-gia-id {
+    width: 100%;
+}
